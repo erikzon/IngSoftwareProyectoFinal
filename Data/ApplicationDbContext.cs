@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using proyectoIngSoftware.Models;
 
 namespace proyectoIngSoftware.Data
 {
@@ -9,5 +10,6 @@ namespace proyectoIngSoftware.Data
             : base(options)
         {
         }
+        public DbSet<proyectoIngSoftware.Models.Estaciones> Estaciones { get; set; } = default!;
     }
 }
