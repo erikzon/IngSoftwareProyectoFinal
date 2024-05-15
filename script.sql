@@ -1,5 +1,7 @@
 USE master
 GO
+ALTER DATABASE TRANSMETRO SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+GO
 DROP DATABASE TRANSMETRO
 GO
 
@@ -113,14 +115,13 @@ INSERT INTO lineas (NOMBRE, LONGITUD) VALUES ('Linea 2', 15.0);
 INSERT INTO lineas (NOMBRE, LONGITUD) VALUES ('Linea 3', 12.3);
 
 -- Inserts for table `parqueos`
-INSERT INTO parqueos (UBICACION, CAPACIDAD) VALUES ('Ubicacion 1', 100);
-INSERT INTO parqueos (UBICACION, CAPACIDAD) VALUES ('Ubicacion 2', 200);
-INSERT INTO parqueos (UBICACION, CAPACIDAD) VALUES ('Ubicacion 3', 150);
+INSERT INTO parqueos (UBICACION, CAPACIDAD) VALUES ('Parqueo zona 1', 100);
+INSERT INTO parqueos (UBICACION, CAPACIDAD) VALUES ('Parqueo zona 2', 200);
+INSERT INTO parqueos (UBICACION, CAPACIDAD) VALUES ('Parqueo zona 3', 150);
 
 -- Inserts for table `puestos`
-INSERT INTO puestos (NOMBRE, DESCRIPCION) VALUES ('Puesto 1', 'Descripcion 1');
-INSERT INTO puestos (NOMBRE, DESCRIPCION) VALUES ('Puesto 2', 'Descripcion 2');
-INSERT INTO puestos (NOMBRE, DESCRIPCION) VALUES ('Puesto 3', 'Descripcion 3');
+INSERT INTO puestos (NOMBRE, DESCRIPCION) VALUES ('Guardia', 'Guardian de linea');
+INSERT INTO puestos (NOMBRE, DESCRIPCION) VALUES ('Piloto', 'Piloto de bus');
 
 -- Inserts for table `municipalidades`
 INSERT INTO municipalidades (NOMBRE, DIRECCION) VALUES ('Municipalidad 1', 'Direccion 1');
@@ -128,14 +129,14 @@ INSERT INTO municipalidades (NOMBRE, DIRECCION) VALUES ('Municipalidad 2', 'Dire
 INSERT INTO municipalidades (NOMBRE, DIRECCION) VALUES ('Municipalidad 3', 'Direccion 3');
 
 -- Inserts for table `estaciones`
-INSERT INTO estaciones (NOMBRE, DIRECCION, ID_MUNICIPALIDAD) VALUES ('Estacion 1', 'Direccion 1', 1);
-INSERT INTO estaciones (NOMBRE, DIRECCION, ID_MUNICIPALIDAD) VALUES ('Estacion 2', 'Direccion 2', 2);
-INSERT INTO estaciones (NOMBRE, DIRECCION, ID_MUNICIPALIDAD) VALUES ('Estacion 3', 'Direccion 3', 3);
+INSERT INTO estaciones (NOMBRE, DIRECCION, ID_MUNICIPALIDAD) VALUES ('Estacion 1', 'Direccion zona 1', 1);
+INSERT INTO estaciones (NOMBRE, DIRECCION, ID_MUNICIPALIDAD) VALUES ('Estacion 2', 'Direccion zona 2', 2);
+INSERT INTO estaciones (NOMBRE, DIRECCION, ID_MUNICIPALIDAD) VALUES ('Estacion 3', 'Direccion zona 3', 3);
 
 -- Inserts for table `accesos`
-INSERT INTO accesos (ID_ESTACION, DESCRIPCION) VALUES (1, 'Descripcion 1');
-INSERT INTO accesos (ID_ESTACION, DESCRIPCION) VALUES (2, 'Descripcion 2');
-INSERT INTO accesos (ID_ESTACION, DESCRIPCION) VALUES (3, 'Descripcion 3');
+INSERT INTO accesos (ID_ESTACION, DESCRIPCION) VALUES (1, 'Acceso 1');
+INSERT INTO accesos (ID_ESTACION, DESCRIPCION) VALUES (2, 'Acceso 2');
+INSERT INTO accesos (ID_ESTACION, DESCRIPCION) VALUES (3, 'Acceso 3');
 
 -- Inserts for table `buses`
 INSERT INTO buses (CAPACIDAD, ID_LINEA, ID_PARQUEO) VALUES (50, 1, 1);
@@ -143,10 +144,8 @@ INSERT INTO buses (CAPACIDAD, ID_LINEA, ID_PARQUEO) VALUES (60, 2, 2);
 INSERT INTO buses (CAPACIDAD, ID_LINEA, ID_PARQUEO) VALUES (70, 3, 3);
 
 -- Inserts for table `empleados`
-INSERT INTO empleados (NOMBRE, DIRECCION, TELEFONO, ID_PUESTO) VALUES ('Empleado 1', 'Direccion 1', '1234567890', 1);
-INSERT INTO empleados (NOMBRE, DIRECCION, TELEFONO, ID_PUESTO) VALUES ('Empleado 2', 'Direccion 2', '0987654321',2);
-INSERT INTO empleados (NOMBRE, DIRECCION, TELEFONO, ID_PUESTO) VALUES ('Empleado 3', 'Direccion 3', '1122334455', 3);
-
+INSERT INTO empleados (NOMBRE, DIRECCION, TELEFONO, ID_PUESTO) VALUES ('Miranda', 'Direccion ciudad', '545222200', 1);
+INSERT INTO empleados (NOMBRE, DIRECCION, TELEFONO, ID_PUESTO) VALUES ('Nestor', 'Direccion ciudad', '25362244',2);
 -- Inserts for table `estacion_linea`
 INSERT INTO estacion_linea (ID_ESTACION, ID_LINEA, ORDEN, DISTANCIA_SIGUIENTE) VALUES (1, 1, 1, 2.5);
 INSERT INTO estacion_linea (ID_ESTACION, ID_LINEA, ORDEN, DISTANCIA_SIGUIENTE) VALUES (2, 2, 2, 3.0);
@@ -155,4 +154,3 @@ INSERT INTO estacion_linea (ID_ESTACION, ID_LINEA, ORDEN, DISTANCIA_SIGUIENTE) V
 -- Inserts for table `turnos_bus`
 INSERT INTO turnos_bus (ID_EMPLEADO, ID_BUS, FECHA_INICIO, FECHA_FIN) VALUES (1, 1, '2024-05-01T08:00:00', '2024-05-01T16:00:00');
 INSERT INTO turnos_bus (ID_EMPLEADO, ID_BUS, FECHA_INICIO, FECHA_FIN) VALUES (2, 2, '2024-05-02T08:00:00', '2024-05-02T16:00:00');
-INSERT INTO turnos_bus (ID_EMPLEADO, ID_BUS, FECHA_INICIO, FECHA_FIN) VALUES (3, 3, '2024-05-03T08:00:00', '2024-05-03T16:00:00');

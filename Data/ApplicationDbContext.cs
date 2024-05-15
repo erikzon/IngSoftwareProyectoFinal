@@ -11,5 +11,6 @@ namespace proyectoIngSoftware.Data
         {
         }
         public DbSet<proyectoIngSoftware.Models.Estaciones> Estaciones { get; set; } = default!;
+        public DbSet<proyectoIngSoftware.Models.Lineas> Lineas { get; set; } = default!;
     }
 }

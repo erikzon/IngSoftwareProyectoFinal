@@ -1,0 +1,42 @@
+﻿@page
+@model proyectoIngSoftware.Pages.Linea.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Lineas[0].Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lineas[0].Longitud)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Lineas) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Longitud)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.IdLinea">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.IdLinea">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.IdLinea">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
