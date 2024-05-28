@@ -21,7 +21,9 @@ namespace proyectoIngSoftware.Pages.Empleado
 
         public IActionResult OnGet()
         {
-        ViewData["IdPuesto"] = new SelectList(_context.Set<Puestos>(), "IdPuesto", "IdPuesto");
+            var puestos = _context.Set<Puestos>().ToList();
+            var selectList = new SelectList(puestos, "IdPuesto", "Nombre");
+            ViewData["IdPuesto"] = selectList;
             return Page();
         }
 

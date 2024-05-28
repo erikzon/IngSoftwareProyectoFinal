@@ -30,13 +30,17 @@ namespace proyectoIngSoftware.Pages.Empleado
                 return NotFound();
             }
 
-            var empleados =  await _context.Empleados.FirstOrDefaultAsync(m => m.IdEmpleado == id);
+            var empleados = await _context.Empleados.FirstOrDefaultAsync(m => m.IdEmpleado == id);
             if (empleados == null)
             {
                 return NotFound();
             }
             Empleados = empleados;
-           ViewData["IdPuesto"] = new SelectList(_context.Set<Puestos>(), "IdPuesto", "IdPuesto");
+
+            var puestos = await _context.Set<Puestos>().ToListAsync();
+            var selectList = new SelectList(puestos, "IdPuesto", "Nombre");
+            ViewData["IdPuesto"] = selectList;
+
             return Page();
         }
 
