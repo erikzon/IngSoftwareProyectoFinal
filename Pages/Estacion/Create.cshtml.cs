@@ -21,7 +21,9 @@ namespace proyectoIngSoftware.Pages.Estacion
 
         public IActionResult OnGet()
         {
-        ViewData["IdMunicipalidad"] = new SelectList(_context.Set<Municipalidades>(), "IdMunicipalidad", "IdMunicipalidad");
+            var municipalidades = _context.Set<Municipalidades>().ToList();
+            var selectList = new SelectList(municipalidades, "IdMunicipalidad", "Nombre");
+            ViewData["IdMunicipalidad"] = selectList;
             return Page();
         }
 

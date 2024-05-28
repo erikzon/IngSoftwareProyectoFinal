@@ -30,15 +30,20 @@ namespace proyectoIngSoftware.Pages.Estacion
                 return NotFound();
             }
 
-            var estaciones =  await _context.Estaciones.FirstOrDefaultAsync(m => m.IdEstacion == id);
+            var estaciones = await _context.Estaciones.FirstOrDefaultAsync(m => m.IdEstacion == id);
             if (estaciones == null)
             {
                 return NotFound();
             }
             Estaciones = estaciones;
-           ViewData["IdMunicipalidad"] = new SelectList(_context.Set<Municipalidades>(), "IdMunicipalidad", "IdMunicipalidad");
+
+            var municipalidades = await _context.Set<Municipalidades>().ToListAsync();
+            var selectList = new SelectList(municipalidades, "IdMunicipalidad", "Nombre");
+            ViewData["IdMunicipalidad"] = selectList;
+
             return Page();
         }
+
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see https://aka.ms/RazorPagesCRUD.

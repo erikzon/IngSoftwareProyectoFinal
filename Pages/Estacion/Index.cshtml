@@ -20,7 +20,7 @@
                 @Html.DisplayNameFor(model => model.Estaciones[0].Direccion)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Estaciones[0].IdMunicipalidadNavigation)
+                @Html.DisplayNameFor(model => model.Estaciones[0].IdMunicipalidadNavigation.Nombre) de municipalidad
             </th>
             <th></th>
         </tr>
@@ -35,7 +35,7 @@
                 @Html.DisplayFor(modelItem => item.Direccion)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdMunicipalidadNavigation.IdMunicipalidad)
+                @Html.DisplayFor(modelItem => item.IdMunicipalidadNavigation.Nombre)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.IdEstacion">Editar</a> |
