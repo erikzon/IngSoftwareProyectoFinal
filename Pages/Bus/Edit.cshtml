@@ -1,0 +1,45 @@
+﻿@page
+@model proyectoIngSoftware.Pages.Bus.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar</h1>
+
+<h4>Buses</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Buses.IdBus" />
+            <div class="form-group">
+                <label asp-for="Buses.Capacidad" class="control-label"></label>
+                <input asp-for="Buses.Capacidad" class="form-control" />
+                <span asp-validation-for="Buses.Capacidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Buses.IdLinea" class="control-label">Linea</label>
+                <select asp-for="Buses.IdLinea" class="form-control" asp-items="ViewBag.IdLinea"></select>
+                <span asp-validation-for="Buses.IdLinea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Buses.IdParqueo" class="control-label">Parqueo</label>
+                <select asp-for="Buses.IdParqueo" class="form-control" asp-items="ViewBag.IdParqueo"></select>
+                <span asp-validation-for="Buses.IdParqueo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Guardar cambios" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Regresar a la lista</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

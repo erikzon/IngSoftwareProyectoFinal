@@ -13,5 +13,6 @@ namespace proyectoIngSoftware.Data
         public DbSet<proyectoIngSoftware.Models.Estaciones> Estaciones { get; set; } = default!;
         public DbSet<proyectoIngSoftware.Models.Lineas> Lineas { get; set; } = default!;
         public DbSet<proyectoIngSoftware.Models.Empleados> Empleados { get; set; } = default!;
+        public DbSet<proyectoIngSoftware.Models.Buses> Buses { get; set; } = default!;
     }
 }

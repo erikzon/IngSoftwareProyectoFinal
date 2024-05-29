@@ -1,0 +1,37 @@
+﻿@page
+@model proyectoIngSoftware.Pages.Bus.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalle</h1>
+
+<div>
+    <h4>Buses</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Buses.Capacidad)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Buses.Capacidad)
+        </dd>
+        <dt class="col-sm-2">
+            Linea
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Buses.IdLineaNavigation.IdLinea)
+        </dd>
+        <dt class="col-sm-2">
+            Parqueo
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Buses.IdParqueoNavigation.IdParqueo)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Buses.IdBus">Editar</a> |
+    <a asp-page="./Index">Regresar a lista</a>
+</div>
