@@ -32,10 +32,10 @@
                 @Html.DisplayFor(modelItem => item.Capacidad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdLineaNavigation.IdLinea)
+                @Html.DisplayFor(modelItem => item.IdLineaNavigation.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IdParqueoNavigation.IdParqueo)
+                @Html.DisplayFor(modelItem => item.IdParqueoNavigation.Ubicacion)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.IdBus">Editar</a> |

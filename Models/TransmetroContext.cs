@@ -17,6 +17,18 @@ public partial class TransmetroContext : DbContext
 
     public virtual DbSet<Accesos> Accesos { get; set; }
 
+    public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
+
+    public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
+
+    public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
+
+    public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
+
+    public virtual DbSet<AspNetUserTokens> AspNetUserTokens { get; set; }
+
+    public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
+
     public virtual DbSet<Buses> Buses { get; set; }
 
     public virtual DbSet<Empleados> Empleados { get; set; }
@@ -42,7 +54,7 @@ public partial class TransmetroContext : DbContext
     {
         modelBuilder.Entity<Accesos>(entity =>
         {
-            entity.HasKey(e => e.IdAcceso).HasName("PK__accesos__20ABE013F9CF41D8");
+            entity.HasKey(e => e.IdAcceso).HasName("PK__accesos__20ABE01384D23617");
 
             entity.Property(e => e.Descripcion).HasDefaultValueSql("(NULL)");
             entity.Property(e => e.IdEstacion).HasDefaultValueSql("(NULL)");
@@ -50,9 +62,34 @@ public partial class TransmetroContext : DbContext
             entity.HasOne(d => d.IdEstacionNavigation).WithMany(p => p.Accesos).HasConstraintName("FK_accesos_estaciones");
         });
 
+        modelBuilder.Entity<AspNetRoles>(entity =>
+        {
+            entity.HasIndex(e => e.NormalizedName, "RoleNameIndex")
+                .IsUnique()
+                .HasFilter("([NormalizedName] IS NOT NULL)");
+        });
+
+        modelBuilder.Entity<AspNetUsers>(entity =>
+        {
+            entity.HasIndex(e => e.NormalizedUserName, "UserNameIndex")
+                .IsUnique()
+                .HasFilter("([NormalizedUserName] IS NOT NULL)");
+
+            entity.HasMany(d => d.Role).WithMany(p => p.User)
+                .UsingEntity<Dictionary<string, object>>(
+                    "AspNetUserRoles",
+                    r => r.HasOne<AspNetRoles>().WithMany().HasForeignKey("RoleId"),
+                    l => l.HasOne<AspNetUsers>().WithMany().HasForeignKey("UserId"),
+                    j =>
+                    {
+                        j.HasKey("UserId", "RoleId");
+                        j.HasIndex(new[] { "RoleId" }, "IX_AspNetUserRoles_RoleId");
+                    });
+        });
+
         modelBuilder.Entity<Buses>(entity =>
         {
-            entity.HasKey(e => e.IdBus).HasName("PK__buses__143B662F12317114");
+            entity.HasKey(e => e.IdBus).HasName("PK__buses__143B662FE44566CA");
 
             entity.Property(e => e.Capacidad).HasDefaultValueSql("(NULL)");
             entity.Property(e => e.IdLinea).HasDefaultValueSql("(NULL)");
@@ -65,7 +102,7 @@ public partial class TransmetroContext : DbContext
 
         modelBuilder.Entity<Empleados>(entity =>
         {
-            entity.HasKey(e => e.IdEmpleado).HasName("PK__empleado__922CA2692E6EFD63");
+            entity.HasKey(e => e.IdEmpleado).HasName("PK__empleado__922CA26925803143");
 
             entity.Property(e => e.Direccion).HasDefaultValueSql("(NULL)");
             entity.Property(e => e.IdPuesto).HasDefaultValueSql("(NULL)");
@@ -77,7 +114,7 @@ public partial class TransmetroContext : DbContext
 
         modelBuilder.Entity<EstacionLinea>(entity =>
         {
-            entity.HasKey(e => new { e.IdEstacion, e.IdLinea }).HasName("PK__estacion__24BB16B025252783");
+            entity.HasKey(e => new { e.IdEstacion, e.IdLinea }).HasName("PK__estacion__24BB16B0EAE0D513");
 
             entity.Property(e => e.DistanciaSiguiente).HasDefaultValueSql("(NULL)");
             entity.Property(e => e.Orden).HasDefaultValueSql("(NULL)");
@@ -93,7 +130,7 @@ public partial class TransmetroContext : DbContext
 
         modelBuilder.Entity<Estaciones>(entity =>
         {
-            entity.HasKey(e => e.IdEstacion).HasName("PK__estacion__0D552EC8FCD0C24D");
+            entity.HasKey(e => e.IdEstacion).HasName("PK__estacion__0D552EC89F6C7137");
 
             entity.Property(e => e.Direccion).HasDefaultValueSql("(NULL)");
             entity.Property(e => e.IdMunicipalidad).HasDefaultValueSql("(NULL)");
@@ -104,7 +141,7 @@ public partial class TransmetroContext : DbContext
 
         modelBuilder.Entity<Lineas>(entity =>
         {
-            entity.HasKey(e => e.IdLinea).HasName("PK__lineas__9EE38783EB60E35C");
+            entity.HasKey(e => e.IdLinea).HasName("PK__lineas__9EE387836FCF7494");
 
             entity.Property(e => e.Longitud).HasDefaultValueSql("(NULL)");
             entity.Property(e => e.Nombre).HasDefaultValueSql("(NULL)");
@@ -112,7 +149,7 @@ public partial class TransmetroContext : DbContext
 
         modelBuilder.Entity<Municipalidades>(entity =>
         {
-            entity.HasKey(e => e.IdMunicipalidad).HasName("PK__municipa__06FCE2181C6080B1");
+            entity.HasKey(e => e.IdMunicipalidad).HasName("PK__municipa__06FCE218C607D6EF");
 
             entity.Property(e => e.Direccion).HasDefaultValueSql("(NULL)");
             entity.Property(e => e.Nombre).HasDefaultValueSql("(NULL)");
@@ -120,7 +157,7 @@ public partial class TransmetroContext : DbContext
 
         modelBuilder.Entity<Parqueos>(entity =>
         {
-            entity.HasKey(e => e.IdParqueo).HasName("PK__parqueos__9B329ED019615526");
+            entity.HasKey(e => e.IdParqueo).HasName("PK__parqueos__9B329ED04C5E20E3");
 
             entity.Property(e => e.Capacidad).HasDefaultValueSql("(NULL)");
             entity.Property(e => e.Ubicacion).HasDefaultValueSql("(NULL)");
@@ -128,7 +165,7 @@ public partial class TransmetroContext : DbContext
 
         modelBuilder.Entity<Puestos>(entity =>
         {
-            entity.HasKey(e => e.IdPuesto).HasName("PK__puestos__88D8DDB17E20E7E2");
+            entity.HasKey(e => e.IdPuesto).HasName("PK__puestos__88D8DDB19757FDE1");
 
             entity.Property(e => e.Descripcion).HasDefaultValueSql("(NULL)");
             entity.Property(e => e.Nombre).HasDefaultValueSql("(NULL)");
@@ -136,7 +173,7 @@ public partial class TransmetroContext : DbContext
 
         modelBuilder.Entity<TurnosBus>(entity =>
         {
-            entity.HasKey(e => e.IdTurno).HasName("PK__turnos_b__F1C3D873FAE630C7");
+            entity.HasKey(e => e.IdTurno).HasName("PK__turnos_b__F1C3D8730F00137A");
 
             entity.Property(e => e.FechaFin).HasDefaultValueSql("(NULL)");
             entity.Property(e => e.FechaInicio).HasDefaultValueSql("(NULL)");
