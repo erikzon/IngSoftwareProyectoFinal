@@ -7,7 +7,7 @@
 
 <h1>Detalles</h1>
 
-<div>
+<div class="apple-style-details">
     <h4>Estaciones</h4>
     <hr />
     <dl class="row">
@@ -31,7 +31,48 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Estaciones.IdEstacion">Editar</a> |
-    <a asp-page="./Index">Regresar</a>
+<div class="text-center mt-3">
+    <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@Model.Estaciones.IdEstacion">Editar</a>
+    <a class="btn btn-secondary" asp-page="./Index">Regresar</a>
 </div>
+
+<style>
+    .apple-style-details {
+        background: linear-gradient(145deg, #f9f9f9, #ffffff);
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 20px;
+        border: none;
+    }
+
+    .btn-primary {
+        background: linear-gradient(145deg, #4a90e2, #007aff);
+        border: none;
+        border-radius: 25px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        transition: background 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background: linear-gradient(145deg, #3a78d2, #0067d6);
+        }
+
+    .btn-secondary {
+        background: linear-gradient(145deg, #6c757d, #868e96);
+        border: none;
+        border-radius: 25px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        transition: background 0.3s ease;
+    }
+
+        .btn-secondary:hover {
+            background: linear-gradient(145deg, #555a61, #626971);
+        }
+</style>

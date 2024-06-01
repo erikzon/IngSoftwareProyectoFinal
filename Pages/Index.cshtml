@@ -4,20 +4,97 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
+<header class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">MiProyecto</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-page="/Estacion/Index">Administrar estaciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-page="/Linea/Index">Administrar lineas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-page="/Empleado/Index">Administrar empleados (pilotos y guardias)</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-page="/Bus/Index">Administrar buses</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<div class="text-center mt-5">
     <h1 class="display-4">Bienvenido</h1>
-    <ul class="navbar-nav flex-grow-1">
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-page="/Estacion/Index">Administrar estaciones</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-page="/Linea/Index">Administrar lineas</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-page="/Empleado/Index">Administrar empleados (pilotos y guardias)</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link text-dark" asp-area="" asp-page="/Bus/Index">Administrar buses</a>
-        </li>
-    </ul>
 </div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img-top" src="/img/Administrar_estaciones.webp" alt="Administrar estaciones">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Administrar estaciones</h5>
+                    <p class="card-text">Gestiona todas las estaciones desde esta sección.</p>
+                    <a href="/Estacion/Index" class="btn btn-primary">Ir a estaciones</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img-top" src="/img/Administrar_lineas.webp" alt="Administrar lineas">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Administrar lineas</h5>
+                    <p class="card-text">Gestiona todas las líneas desde esta sección.</p>
+                    <a href="/Linea/Index" class="btn btn-primary">Ir a lineas</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img-top" src="/img/rrhh.webp" alt="Administrar empleados">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Administrar empleados</h5>
+                    <p class="card-text">Gestiona pilotos y guardias desde esta sección.</p>
+                    <a href="/Empleado/Index" class="btn btn-primary">Ir a empleados</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img class="card-img-top" src="/img/buses.webp" alt="Administrar buses">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Administrar buses</h5>
+                    <p class="card-text">Gestiona todos los buses desde esta sección.</p>
+                    <a href="/Bus/Index" class="btn btn-primary">Ir a buses</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+    .card-img-top {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .col-md-4 {
+        margin-bottom: 30px;
+    }
+</style>

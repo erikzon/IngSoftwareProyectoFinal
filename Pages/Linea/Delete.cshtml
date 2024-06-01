@@ -5,11 +5,11 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Delete</h1>
+<h1>Eliminar</h1>
 
 <h3>¿Estás seguro de que quieres eliminar esto?</h3>
-<div>
-    <h4>Lineas</h4>
+<div class="apple-style-delete">
+    <h4>Líneas</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
@@ -25,10 +25,68 @@
             @Html.DisplayFor(model => model.Lineas.Longitud)
         </dd>
     </dl>
-    
+
     <form method="post">
-        <input type="hidden" asp-for="Lineas.IdLinea" />
-        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
-        <a asp-page="./Index">Regresar</a>
+        <div class="form-group text-center">
+            <input type="hidden" asp-for="Lineas.IdLinea" />
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            <a class="btn btn-secondary" asp-page="./Index">Regresar</a>
+        </div>
     </form>
 </div>
+
+<style>
+    .apple-style-delete {
+        background: linear-gradient(145deg, #f9f9f9, #ffffff);
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-top: 20px;
+        border: none;
+    }
+
+    .btn-primary {
+        background: linear-gradient(145deg, #4a90e2, #007aff);
+        border: none;
+        border-radius: 25px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        transition: background 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background: linear-gradient(145deg, #3a78d2, #0067d6);
+        }
+
+    .btn-secondary {
+        background: linear-gradient(145deg, #6c757d, #868e96);
+        border: none;
+        border-radius: 25px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        transition: background 0.3s ease;
+    }
+
+        .btn-secondary:hover {
+            background: linear-gradient(145deg, #555a61, #626971);
+        }
+
+    .btn-danger {
+        background: linear-gradient(145deg, #e74c3c, #c0392b);
+        border: none;
+        border-radius: 25px;
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        transition: background 0.3s ease;
+    }
+
+        .btn-danger:hover {
+            background: linear-gradient(145deg, #c0392b, #a93226);
+        }
+</style>
